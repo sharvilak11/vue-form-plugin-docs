@@ -332,7 +332,7 @@ To check for possible calendar-configurations, please visit [vue-flatpickr Compo
 | displayMode   | display mode to be either `VIEW`, `CREATE` or `EDIT` | global | String
 | hideLabel     | hide the label from the form-group | global | Boolean
 | filter        | applies the passed filter when display-mode is VIEW | global | String
-| filterArs     | applies the passed arguments to called filter when filter prop is passed | global | Array-Like
+| filterArgs     | applies the passed arguments to called filter when filter prop is passed | global | Array-Like
 | regex         | applies the regex to the value for validation | Text field | new RegExp
 | showSuggestion | sets the input element in suggestion mode | Text field | Boolean
 | suggestions   | list of suggestions from which most matchable suggestion will be populated | Text field | Array
