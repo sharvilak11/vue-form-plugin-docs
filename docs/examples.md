@@ -383,7 +383,7 @@ To check for possible calendar-configurations, please visit [vue-flatpickr Compo
 | type          | defines the type of the element which will be rendered | global with standalone | String
 | value         | binds the value to the field. use `.sync` for two way communication | global with standalone | any
 | label         | name of the label to be shown above the element | global | String
-| required      | boolean property defines whether the element is a required field or not | Boolean
+| required      | boolean property defines whether the element is a required field or not | global | Boolean
 | placeholder   | shows the value as placeholder | global | String
 | customClass   | appends the css class to the element in EDIT mode | global | String
 | disabled      | setting this to true will disable the element from user input | global | Boolean

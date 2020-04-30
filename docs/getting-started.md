@@ -18,3 +18,15 @@ Via npm
 ```shell script
 npm install --save @e9ine/vue-form-plugin
 ```
+
+CDN Link (Browser)
+```
+https://unpkg.com/@e9ine/vue-form-plugin
+```
+
+Via Link (ESM)
+```
+https://unpkg.com/@e9ine/vue-form-plugin/dist/vue-form-plugin.esm.js
+```
+
+Check configuration guide in the next section.
