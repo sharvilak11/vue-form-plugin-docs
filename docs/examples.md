@@ -132,22 +132,22 @@ export default class Project extends Model {
 - You can chain multiple FormFor within a FormFor as each FormFor exposes its own [**Scoped-Slot**](https://vuejs.org/v2/guide/components-slots.html#Scoped-Slots-with-the-slot-scope-Attribute) with `errors` and `invalid` flag. An example is shown below
 ```html
 <FormFor :data="project" display-mode="EDIT" v-slot="form1">
-            <!--Invalid : {{ form1.invalid }} -->
-            <FieldFor field="Name"></FieldFor>
-            <FieldFor field="Description"></FieldFor>
-            <h5>FormFor Level 2</h5>
-            <FormFor :data="project.Address" display-mode="EDIT" v-slot="form2">
-                <!-- Invalid : {{ form2.invalid }} -->
-                <FieldFor field="Line1"></FieldFor>
-                <FieldFor field="Line2"></FieldFor>
-                <h5>FormFor Level 3</h5>
-                <FormFor :data="project.Address.Location" display-mode="EDIT" v-slot="form3">
-                    <!-- Invalid : {{ form3.invalid }} -->
-                    <FieldFor field="Longitude"></FieldFor>
-                    <FieldFor field="Latitude"></FieldFor>
-                </FormFor>
-            </FormFor>
+    <!--Invalid : {{ form1.invalid }} -->
+    <FieldFor field="Name"></FieldFor>
+    <FieldFor field="Description"></FieldFor>
+    <h5>FormFor Level 2</h5>
+    <FormFor :data="project.Address" display-mode="EDIT" v-slot="form2">
+        <!-- Invalid : {{ form2.invalid }} -->
+        <FieldFor field="Line1"></FieldFor>
+        <FieldFor field="Line2"></FieldFor>
+        <h5>FormFor Level 3</h5>
+        <FormFor :data="project.Address.Location" display-mode="EDIT" v-slot="form3">
+            <!-- Invalid : {{ form3.invalid }} -->
+            <FieldFor field="Longitude"></FieldFor>
+            <FieldFor field="Latitude"></FieldFor>
         </FormFor>
+    </FormFor>
+</FormFor>
 ```
 
 Presence of certain properties within a model will force a particular element to be rendered.
@@ -160,7 +160,65 @@ Presence of certain properties within a model will force a particular element to
 
 Some extra properties which can be set in the models include `filter`, `maxlength`, `min`, `max`, `required`, `calendarConfig`. More options can be passed via individual FieldFor props. You can find all the props in the [Props Configuration](./examples#props-configuration).
 
+## Re-render/Force Reactivity
+
+- In certain cases when you would need to re-render a component to trigger the reactivity, you might want to re-render a FieldFor or a FormFor component. How you can do it ?
+
+- Vue triggers the component to re-render if at-least one of its prop changes and best way to do it is binding a counter to `key` prop and increasing it when needed.
+
+Let's take an example, we need to re-render a Total Cost when Quantity and CostPerQuantity changes.
+```html
+<FieldFor field="Quantity" @changed="quantityChanged"></FieldFor>
+<FieldFor field="CostPerQuantity" @changed="costPerQuantityChanged"></FieldFor>
+<FieldFor field="TotalCost" :key="counter"></FieldFor>
+```
+
+```js
+import Cost from '@/models/Cost'
+export default {
+    data() {
+        return {
+            counter: 0,
+            cost: new Cost({
+                Quantity: 0,
+                CostPerQuantity: 0,
+                TotalCost: 0
+            })    
+        };
+    },
+    methods: {
+        quantityChanged(val) {
+             this.cost.TotalCost = val * this.cost.CostPerQuantity;  
+             this.counter++; 
+        },
+        costPerQuantityChanged(val) {
+             this.cost.TotalCost = val * this.cost.Quantity;   
+             this.counter++;
+        }   
+    }
+}
+```
+
+In case of FormFor, you can follow the same approach too. It always helps when you have to rollback upon clicking on cancel, update the data and then update the counter linked as key to FormFor and FormFor will take care of roll-back.
+```html
+<FormFor :data="cost" :display-mode="displayMode" :key="counter">
+...
+</FormFor>
+```
+
+```js
+cancel() {
+    this.displayMode = 'VIEW';
+    this.cost = new Cost(this.prevCost);
+    this.counter++;
+}
+```
+
+**Note** : FieldFor is reactive bottom-up (from Child to Parent) unlimited times but from top-down (Parent to Child) it's always first time reactivity (Exceptional cases like Dropdown).
+ 
+
 All the examples below are based on FormFor usage, but you can use `type` and `value` properties in case you are planning to use standalone FieldFor.
+
 ## TextBox
 
 *Standalone*: `type="Text"`
