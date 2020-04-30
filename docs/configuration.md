@@ -43,8 +43,8 @@ To use the Single File Components, you can import from `src/lib` directory. This
 Manually include SFC components
 
 ```js
-import FormFor from '@e9ine/vue-form-plugin/lib/FormFor';
-import FieldFor from '@e9ine/vue-form-plugin/lib/FieldFor';
+import FormFor from '@e9ine/vue-form-plugin/src/lib/FormFor';
+import FieldFor from '@e9ine/vue-form-plugin/src/lib/FieldFor';
 ```
 
 Manually include CSS/SCSS in your style.scss. You can either import style.scss or manually pick certain scss files to be imported.

@@ -24,7 +24,7 @@ CDN Link (Browser)
 https://unpkg.com/@e9ine/vue-form-plugin
 ```
 
-Via Link (ESM)
+CDN Link (ESM)
 ```
 https://unpkg.com/@e9ine/vue-form-plugin/dist/vue-form-plugin.esm.js
 ```
