@@ -17,6 +17,17 @@ import VueFormPlugin from '@e9ine/vue-form-plugin';
 Vue.use(VueFormPlugin);
 ```
 
+You can also pass options if you do not plan to use FormFor in your project.
+
+```js
+import Vue from 'vue';
+import VueFormPlugin from '@e9ine/vue-form-plugin';
+
+Vue.use(VueFormPlugin, {
+    formFor: false
+});
+```
+
 **Note**: CSS will be auto imported in this case. No need to manually import
 
 ## Tree Shaking Usage
@@ -33,18 +44,25 @@ export default {
     }
 }
 ```
-
 **Note**: CSS will be auto imported in this case. No need to manually import
 
-## SFC Usage
+## SFC & Dynamic import Usage
 
-To use the Single File Components, you can import from `src/lib` directory. This should be the preferred way if you are planning to import scss files and vue files.
+To use the dynamic import version for FieldFor, load the plugin from **src directory**. This will follow on-demand loading for each component via dynamic imports.
 
-Manually include SFC components
+You will also need to manually include the scss in this case.
 
 ```js
-import FormFor from '@e9ine/vue-form-plugin/src/lib/FormFor';
-import FieldFor from '@e9ine/vue-form-plugin/src/lib/FieldFor';
+import Vue from 'vue';
+import VueFormPlugin from '@e9ine/vue-form-plugin/src';
+
+Vue.use(VueFormPlugin); // options if any same as Full Plugin Usage
+```
+
+You can also import each component via tree shaking in your local components. This should be the preferred way if you are planning to use forms in only limited pages, suitable for websites.
+
+```js
+import {FormFor, FieldFor} from '@e9ine/vue-form-plugin/src';
 ```
 
 Manually include CSS/SCSS in your style.scss. You can either import style.scss or manually pick certain scss files to be imported.

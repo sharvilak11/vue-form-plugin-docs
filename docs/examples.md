@@ -71,6 +71,8 @@ export default {
 }
 ```
 
+**Note**: Default display style is vertical, label followed by form-control. If you need a side by side design, then you can add `form-horizontal` class to FormFor component.
+
 ** Format of the model/schema **
 
 A schema property must have at-least a type which depicts the type of element to be rendered dynamically through FieldFor.
