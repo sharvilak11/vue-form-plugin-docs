@@ -284,7 +284,9 @@ All the examples below are based on FormFor usage, but you can use `type` and `v
 
 ## Dropdown
 
-*Standalone* or *Through model* : `type="select-from"` 
+*Standalone* : `type="Select"` & `select-from prop`
+
+*Through model*: `{type: String} in model  & select-from prop`  
 
 **Note**: Keeping `enum` array in the model also would populate dropdown list.
 
@@ -342,7 +344,9 @@ taxOptionsTempate: `
 
 ## Multi Select
 
-*Standalone* or *Through model* : `type="select-from" and :multiple="true"` 
+*Standalone* : `type="Multiselect" & select-from`
+
+*Through model* : `{type: Array} in model or multiple="true" and select-from prop` 
 
 Rest is similar as above.
 

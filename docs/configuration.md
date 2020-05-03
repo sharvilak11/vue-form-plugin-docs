@@ -30,6 +30,8 @@ Vue.use(VueFormPlugin, {
 
 **Note**: CSS will be auto imported in this case. No need to manually import
 
+___
+
 ## Tree Shaking Usage
 
 You can also import it separately in each component and use.
@@ -45,6 +47,8 @@ export default {
 }
 ```
 **Note**: CSS will be auto imported in this case. No need to manually import
+
+___
 
 ## SFC & Dynamic import Usage
 
@@ -70,6 +74,8 @@ Manually include CSS/SCSS in your style.scss. You can either import style.scss o
 ```scss
 @import '~@e9ine/vue-form-plugin/src/scss/style.scss';
 ```
+
+___
 
 ## CDN Usage (Browser)
 
@@ -102,6 +108,8 @@ Look at a simple example below :
     });
 </script>
 ```
+
+___
 
 ## CDN Usage (ESM)
 
