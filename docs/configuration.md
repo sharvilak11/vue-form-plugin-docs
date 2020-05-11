@@ -50,7 +50,7 @@ export default {
 
 ___
 
-## SFC & Dynamic import Usage
+## SFC & Dynamic import Usage with CLI
 
 To use the dynamic import version for FieldFor, load the plugin from **src directory**. This will follow on-demand loading for each component via dynamic imports.
 

@@ -59,6 +59,7 @@ FormFor has a special use case when it comes to validation. It reads through all
     </Button>
 </FormFor>
 ``` 
+You can also destructure the `v-slot="form"` here with `{errors, invalid}`.
 ```js
 import Project from '@/models/Project';
 export default {
@@ -128,28 +129,54 @@ export default class Project extends Model {
 }
 ```
 
-**FormFor Chaining**
+## FormFor Chaining
 
 - In certain situations like **nested schemas or nested arrays**, it's best to utilise FormFor with chaining due to Vue's slot capabilities.
-- You can chain multiple FormFor within a FormFor as each FormFor exposes its own [**Scoped-Slot**](https://vuejs.org/v2/guide/components-slots.html#Scoped-Slots-with-the-slot-scope-Attribute) with `errors` and `invalid` flag. An example is shown below
+- You can chain multiple FormFor within a FormFor as each FormFor exposes its own [**Scoped-Slot**](https://vuejs.org/v2/guide/components-slots.html#Scoped-Slots-with-the-slot-scope-Attribute) with `errors` and `invalid` flag. You can also use [**refs**](https://vuejs.org/v2/api/#ref) instead of scoped-slots. 
+
+An example is shown below
 ```html
 <FormFor :data="project" display-mode="EDIT" v-slot="form1">
-    <!--Invalid : {{ form1.invalid }} -->
+    <button :disabled="form1.invalid">Submit</button>
     <FieldFor field="Name"></FieldFor>
     <FieldFor field="Description"></FieldFor>
-    <h5>FormFor Level 2</h5>
     <FormFor :data="project.Address" display-mode="EDIT" v-slot="form2">
-        <!-- Invalid : {{ form2.invalid }} -->
         <FieldFor field="Line1"></FieldFor>
         <FieldFor field="Line2"></FieldFor>
-        <h5>FormFor Level 3</h5>
         <FormFor :data="project.Address.Location" display-mode="EDIT" v-slot="form3">
-            <!-- Invalid : {{ form3.invalid }} -->
             <FieldFor field="Longitude"></FieldFor>
             <FieldFor field="Latitude"></FieldFor>
         </FormFor>
     </FormFor>
 </FormFor>
+```
+
+**Note**: When you need a combined or merged errors, you can keep a `ref` on each FormFor and keep either a computed property or bind the expression directly. Here note that refs will only be available once the component is mounted so it is required to keep a conditional check to overcome $refs.
+
+```html
+<button :disabled="checkInvalid">Submit</button>
+<FormFor :data="project" display-mode="EDIT" ref="form1">
+    <FieldFor field="Name"></FieldFor>
+    <FieldFor field="Description"></FieldFor>
+    <FormFor :data="project.Address" display-mode="EDIT" ref="form2">
+        <FieldFor field="Line1"></FieldFor>
+        <FieldFor field="Line2"></FieldFor>
+        <FormFor :data="project.Address.Location" display-mode="EDIT" ref="form3">
+            <FieldFor field="Longitude"></FieldFor>
+            <FieldFor field="Latitude"></FieldFor>
+        </FormFor>
+    </FormFor>
+</FormFor>
+```
+
+```js
+computed: {
+    checkInvalid() {
+        return (this.$refs.form1 && this.$refs.form1.invalid) || 
+               (this.$refs.form2 && this.$refs.form2.invalid) || 
+               (this.$refs.form3 && this.$refs.form3.invalid) 
+    }
+}
 ```
 
 Presence of certain properties within a model will force a particular element to be rendered.
@@ -418,4 +445,29 @@ To check for possible calendar-configurations, please visit [vue-flatpickr Compo
 | showFlags     | Setting this as false hides national flags from telephone supported element. (Saves 122KB worth of css) | Phone Field | Boolean
 | calendarConfig | Date pickr configuration. Check [options](https://flatpickr.js.org/options/) | Date Field | Object
 
+**Note**: `FieldFor` treats every other prop (which is not available above table) as [$attrs](https://vuejs.org/v2/api/#vm-attrs). This is useful for passing ARIA accessibility attributes or native HTML properties like name, id etc which will be directly binded with HTML Element.
 
+## Slots
+
+* **label** - to override the label within the field-for, you can pass a slot with label
+
+```html
+<FieldFor type="Text" :value.sync="name" display-mode="VIEW">
+    <template v-slot:label>
+        <div class="icon-wrapper">
+            <i class="material-icons">edit</i> Name
+        </div>
+    </template>
+</FieldFor>
+```
+
+* **view** - to override the view element within the field-for when display-mode is set to VIEW, you can pass a slot with view
+```html
+<FieldFor type="Text" :value.sync="address.Line1" display-mode="VIEW">
+    <template v-slot:view>
+        <p class="google-address">
+            {{ address.Line1 }} ,
+        </p>
+    </template>
+</FieldFor>
+```
