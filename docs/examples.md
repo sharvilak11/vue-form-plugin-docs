@@ -419,9 +419,11 @@ To check for possible calendar-configurations, please visit [vue-flatpickr Compo
 | required      | boolean property defines whether the element is a required field or not | global | Boolean
 | placeholder   | shows the value as placeholder | global | String
 | customClass   | appends the css class to the element in EDIT mode | global | String
+| customStyle   | appends the custom style to the element in EDIT mode | global | Object
 | disabled      | setting this to true will disable the element from user input | global | Boolean
 | displayMode   | display mode to be either `VIEW`, `CREATE` or `EDIT` | global | String
 | hideLabel     | hide the label from the form-group | global | Boolean
+| showValidationIndicators     | shows the custom validation around the border of the elements based on error, success, filled, active | global | Boolean
 | filter        | applies the passed filter when display-mode is VIEW | global | String
 | filterArgs     | applies the passed arguments to called filter when filter prop is passed | global | Array-Like
 | regex         | applies the regex to the value for validation | Text field | new RegExp
@@ -471,3 +473,29 @@ To check for possible calendar-configurations, please visit [vue-flatpickr Compo
     </template>
 </FieldFor>
 ```
+
+## Custom Messages
+
+You can set custom messages for errors when setting up the plugin.
+
+```js
+Vue.use(VueFormPlugin, {
+    formFor: true,
+    messages: {
+        required: 'Filling this field is completely required'
+    }
+});
+```
+
+```js
+Vue.use(VueFormPlugin, {
+    formFor: true,
+    messages: {
+        required: (props, property) => `Filling ${props.label ?? property.name} field is completely required`
+    }
+});
+```
+
+Possible set of error messages include email, length, required, regex, min, max, default keys.
+
+In Javascript, you can also access messages via `this.$messages` .
