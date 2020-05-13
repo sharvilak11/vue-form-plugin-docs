@@ -20,7 +20,7 @@ You can also pass options if you do not plan to use FormFor in your project.
 
 ```js
 import Vue from 'vue';
-import VueFormPlugin from '@e9ine/vue-form-plugin';
+import VueFormPlugin from '@e9ine/vue-form-plugin/src';
 
 Vue.use(VueFormPlugin, {
     formFor: false,
@@ -36,7 +36,7 @@ You can also import each component via tree shaking in your local components. Th
 import {FormFor, FieldFor} from '@e9ine/vue-form-plugin/src';
 ```
 
-Manually include CSS/SCSS in your style.scss. You can either import style.scss or manually pick certain scss files to be imported.
+Manually include CSS/SCSS in your style.scss if you are not using plugin. You can either import style.scss or manually pick certain scss files to be imported.
 
 ```scss
 @import '~@e9ine/vue-form-plugin/src/scss/style.scss';
