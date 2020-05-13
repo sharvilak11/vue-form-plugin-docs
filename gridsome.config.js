@@ -43,7 +43,7 @@ module.exports = {
         display: 'standalone',
         statusBarStyle: 'default',
         manifestPath: 'manifest.json',
-        disableServiceWorker: false,
+        disableServiceWorker: true,
         serviceWorkerPath: 'service-worker.js',
         cachedFileTypes: 'js,json,css,html,png,jpg,jpeg,svg',
         shortName: 'Vue9 Docs',
