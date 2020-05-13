@@ -1,6 +1,6 @@
 {
   "name": "vue-form-plugin-docs",
-  "version": "0.0.1",
+  "version": "0.0.1a",
   "private": true,
   "scripts": {
     "build": "gridsome build",

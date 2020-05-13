@@ -23,7 +23,7 @@ Two binding can be done on value variable by putting a `.sync` modifier. Alterna
 <FieldFor 
     Type="Text" 
     label="Name" 
-    value.sync="name" 
+    :value.sync="name" 
     display-mode="EDIT"
     @changed="fetchAllCustomers">
 </FieldFor>
@@ -396,7 +396,7 @@ To check for possible calendar-configurations, please visit [vue-flatpickr Compo
 
 ## Phone
 
-*Standalone*: `type="String" and :phone="true"`
+*Standalone*: `type="Phone"
 
 *Through model*: `{type: String, phone: true}`
 
@@ -427,6 +427,7 @@ To check for possible calendar-configurations, please visit [vue-flatpickr Compo
 | filter        | applies the passed filter when display-mode is VIEW | global | String
 | filterArgs     | applies the passed arguments to called filter when filter prop is passed | global | Array-Like
 | regex         | applies the regex to the value for validation | Text field | new RegExp
+| maxlength     | applies the maximum allowed characters for validation | Text/Textarea field | Number
 | showSuggestion | sets the input element in suggestion mode | Text field | Boolean
 | suggestions   | list of suggestions from which most matchable suggestion will be populated | Text field | Array
 | min           | minimum value | Number field | Number
@@ -496,6 +497,6 @@ Vue.use(VueFormPlugin, {
 });
 ```
 
-Possible set of error messages include email, length, required, regex, min, max, default keys.
+Possible set of error messages include email, length, required, regex, min, max, phone, default keys.
 
 In Javascript, you can also access messages via `this.$messages` .

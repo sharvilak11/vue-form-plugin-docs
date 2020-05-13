@@ -3,54 +3,7 @@ title: Plugin configuration
 date: 2018-09-15 07:42:34
 slug: configuration
 ---
-
-## Full Plugin Usage
-
-Even though vue-form-plugin is so simple, you don't really need to set import locally within each component - you can simply set it up by using the plugin on Vue instance for a better developer experience.
-
-To set up a new instance of vue-form-plugin, and start developing just use it like below:
-
-```js
-import Vue from 'vue';
-import VueFormPlugin from '@e9ine/vue-form-plugin';
-
-Vue.use(VueFormPlugin);
-```
-
-You can also pass options if you do not plan to use FormFor in your project.
-
-```js
-import Vue from 'vue';
-import VueFormPlugin from '@e9ine/vue-form-plugin';
-
-Vue.use(VueFormPlugin, {
-    formFor: false
-});
-```
-
-**Note**: CSS will be auto imported in this case. No need to manually import
-
-___
-
-## Tree Shaking Usage
-
-You can also import it separately in each component and use.
-
-```js
-import {FormFor, FieldFor} from '@e9ine/vue-form-plugin';
-
-export default {
-    components: {
-        FieldFor,
-        FormFor
-    }
-}
-```
-**Note**: CSS will be auto imported in this case. No need to manually import
-
-___
-
-## SFC & Dynamic import Usage with CLI
+## SFC & Dynamic import Usage via CLI
 
 To use the dynamic import version for FieldFor, load the plugin from **src directory**. This will follow on-demand loading for each component via dynamic imports.
 
@@ -61,6 +14,20 @@ import Vue from 'vue';
 import VueFormPlugin from '@e9ine/vue-form-plugin/src';
 
 Vue.use(VueFormPlugin); // options if any same as Full Plugin Usage
+```
+
+You can also pass options if you do not plan to use FormFor in your project.
+
+```js
+import Vue from 'vue';
+import VueFormPlugin from '@e9ine/vue-form-plugin';
+
+Vue.use(VueFormPlugin, {
+    formFor: false,
+    messages:{
+        // if any
+    }
+});
 ```
 
 You can also import each component via tree shaking in your local components. This should be the preferred way if you are planning to use forms in only limited pages, suitable for websites.
@@ -74,6 +41,34 @@ Manually include CSS/SCSS in your style.scss. You can either import style.scss o
 ```scss
 @import '~@e9ine/vue-form-plugin/src/scss/style.scss';
 ```
+**Note:**
+In case you get any errors related to syntaxes, kindly make sure you have @babel's `@babel/plugin-proposal-optional-chaining` and `@babel/plugin-proposal-nullish-coalescing-operator` installed and added as plugins in `babel.config.js`.
+```js
+module.exports = {
+  presets: [
+    '@vue/cli-plugin-babel/preset'
+  ],
+  plugins: [
+    '@babel/plugin-proposal-optional-chaining', 
+    '@babel/plugin-proposal-nullish-coalescing-operator']
+}
+
+```
+___
+## Full Plugin Usage
+
+Even though vue-form-plugin is so simple, you don't really need to set import locally within each component - you can simply set it up by using the plugin on Vue instance for a better developer experience.
+
+To set up a new instance of vue-form-plugin, and start developing just use it like below:
+
+```js
+import Vue from 'vue';
+import VueFormPlugin from '@e9ine/vue-form-plugin';
+
+Vue.use(VueFormPlugin);
+```
+
+**Note**: CSS will be auto imported in this case. No need to manually import
 
 ___
 
