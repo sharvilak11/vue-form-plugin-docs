@@ -35,25 +35,25 @@ module.exports = {
         cacheTime: 600000
       }
     },
-    {
-      use: 'gridsome-plugin-pwa',
-      options: {
-        title: 'Vue9 Form Plugin',
-        startUrl: '/',
-        display: 'standalone',
-        statusBarStyle: 'default',
-        manifestPath: 'manifest.json',
-        disableServiceWorker: true,
-        serviceWorkerPath: 'service-worker.js',
-        cachedFileTypes: 'js,json,css,html,png,jpg,jpeg,svg',
-        shortName: 'Vue9 Docs',
-        themeColor: '#e21212',
-        backgroundColor: '#ffffff',
-        icon: 'src/favicon.png',
-        msTileImage: '',
-        msTileColor: '#e21212'
-      }
-    }
+    // {
+    //   use: 'gridsome-plugin-pwa',
+    //   options: {
+    //     title: 'Vue9 Form Plugin',
+    //     startUrl: '/',
+    //     display: 'standalone',
+    //     statusBarStyle: 'default',
+    //     manifestPath: 'manifest.json',
+    //     disableServiceWorker: true,
+    //     serviceWorkerPath: 'service-worker.js',
+    //     cachedFileTypes: 'js,json,css,html,png,jpg,jpeg,svg',
+    //     shortName: 'Vue9 Docs',
+    //     themeColor: '#e21212',
+    //     backgroundColor: '#ffffff',
+    //     icon: 'src/favicon.png',
+    //     msTileImage: '',
+    //     msTileColor: '#e21212'
+    //   }
+    // }
   ],
   chainWebpack: config => {
     const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
