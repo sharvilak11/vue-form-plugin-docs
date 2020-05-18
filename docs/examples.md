@@ -116,7 +116,7 @@ export default class Project extends Model {
 
         this._ImageUrl = this.getProjectImageUrl();
     }
-    static schema() {   // This is a mandatory method.
+    schema() {   // This is a mandatory method.
         return _schema;
     },
     getProjectImageUrl() {
